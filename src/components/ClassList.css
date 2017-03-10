@@ -1,0 +1,26 @@
+.classList {
+  background: lightgray;
+  padding: 1em;
+}
+
+.classList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.classList ul li {
+  border-radius: 3px;
+  margin-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.classList ul li p {
+  padding: 0;
+  margin-bottom: 0.75em;
+  margin-top: 0.75em;
+}

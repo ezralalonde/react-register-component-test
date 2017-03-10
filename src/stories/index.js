@@ -1,17 +1,16 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
-import Button from './Button'
-import Welcome from './Welcome'
 
-storiesOf('Welcome', module)
-  .add('to Storybook', () => (
-    <Welcome showApp={linkTo('Button')}/>
+import ClassInfo from '../components/ClassInfo'
+import ClassList from '../components/ClassList'
+import { single, multi } from './data'
+
+storiesOf('ClassInfo', module)
+  .add('basic', () => (
+    <ClassInfo {...single} />
   ))
 
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
+storiesOf('ClassList', module)
+  .add('basic', () => (
+    <ClassList classes={multi} />
   ))

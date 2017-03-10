@@ -1,0 +1,34 @@
+.number {
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px black;
+  color: white;
+  font: bold 2em Helvetica, Verdana, Tahoma;
+  height: 2em;
+  line-height: 2em; 
+  min-width: 2em;
+  text-align: center;
+  float: left;
+  position: relative;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+span {
+  white-space: nowrap;
+}
+
+.Beginner .number {
+  background: radial-gradient( 5px -9px, circle, white 8%, green 26px );
+  color: white;
+}
+
+.Intermediate .number {
+  background: radial-gradient( 5px -9px, circle, white 8%, blue 26px );
+  color: white;
+}
+
+.Advanced .number {
+  background: radial-gradient( 5px -9px, circle, white 8%, purple 26px );
+  color: white;
+}
