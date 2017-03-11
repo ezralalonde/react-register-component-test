@@ -1,0 +1,7 @@
+.filter-group {
+  display: table-cell;
+  list-style: none;
+  padding-right: 3em;
+  height: 100%;
+  float: left;
+}

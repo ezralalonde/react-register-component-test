@@ -59,6 +59,30 @@ var multi = [
     "follows": 33,
     "cap": 70,
     "location": "St. Joe's Hall",
+  },
+  {
+    "day": "Wednesday",
+    "level": "Intermediate",
+    "team": "Bernadette & Gee",
+    "time": "6:30pm",
+    "number": "12",
+    "cost": 12500,
+    "leads": 36,
+    "follows": 34,
+    "cap": 70,
+    "location": "Trinity Orthodox Hall",
+  },
+  {
+    "day": "Wednesday",
+    "level": "Beginner",
+    "team": "Margie & Dale",
+    "time": "7:00pm",
+    "number": "13",
+    "cost": 10000,
+    "leads": 41,
+    "follows": 39,
+    "cap": 80,
+    "location": "Grosvenor Park",
   }
 ]
 
