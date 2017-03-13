@@ -59,6 +59,9 @@ storiesOf('ClassList', module)
   .add('sort(number)', () => (
     <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.number)} />
   ))
+  .add('sort(number desc)', () => (
+    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.number)} desc/>
+  ))
   .add('sort(day)', () => (
     <ClassList classes={multi} sortMethod={sortByDay} />
   ))
