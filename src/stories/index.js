@@ -30,9 +30,49 @@ storiesOf('FilterOption', module)
     <FilterOption name="Test" />
   ))
 
+
+const sortByNumber = (getValue) => {
+  return (xx, yy) => getValue(xx) - getValue(yy)
+}
+
+const sortByList = (getValue, list) => {
+  return (xx, yy) => list.indexOf(getValue(xx)) > list.indexOf(getValue(yy))
+}
+
+const sortByDay = sortByList(xx => xx.day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'])
+
+const levelList = [
+  'Beginner', 'Beginner Plus', 'Beginner Half-Class',
+  'Intermediate', 'Intermediate Plus',
+  'Advanced'
+]
+const sortByLevel = sortByList(xx => xx.level, levelList)
+
+const sortByString = (getValue) => {
+  return (xx, yy) => getValue(xx) > getValue(yy)
+}
+
 storiesOf('ClassList', module)
   .add('basic', () => (
     <ClassList classes={multi} />
+  ))
+  .add('sort(number)', () => (
+    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.number)} />
+  ))
+  .add('sort(day)', () => (
+    <ClassList classes={multi} sortMethod={sortByDay} />
+  ))
+  .add('sort(location)', () => (
+    <ClassList classes={multi} sortMethod={sortByString(xx => xx.location)} />
+  ))
+  .add('sort(level)', () => (
+    <ClassList classes={multi} sortMethod={sortByLevel}/>
+  ))
+  .add('sort(cost)', () => (
+    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.cost)} />
+  ))
+  .add('sort(balance)', () => (
+    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.leads - xx.follows)}/>
   ))
 
 storiesOf('ToggleVisible', module)
