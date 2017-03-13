@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './ToggleVisible.css'
+import '../styles/ToggleVisible.css'
 
 class ToggleVisible extends React.Component {
   state = {

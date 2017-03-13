@@ -1,6 +1,6 @@
 import React from 'react'
 import ClassInfo from './ClassInfo'
-import './ClassList.css'
+import '../styles/ClassList.css'
 
 const ClassList = ({classes}) => (
   <div className="classList">

@@ -1,5 +1,5 @@
 import React from 'react'
-import './ClassInfo.css'
+import '../styles/ClassInfo.css'
 
 const ClassInfo = ({
   day,

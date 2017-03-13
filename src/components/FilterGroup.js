@@ -2,7 +2,7 @@
 import React from 'react'
 import FilterOption from './FilterOption'
 
-import './FilterGroup.css'
+import '../styles/FilterGroup.css'
 
 const FilterGroup = ({heading, options}) => (
   <div className='filter-group'>
