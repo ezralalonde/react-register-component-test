@@ -6,6 +6,8 @@ import ClassFilter from '../components/ClassFilter'
 import ClassList from '../components/ClassList'
 import FilterGroup from '../components/FilterGroup'
 import FilterOption from '../components/FilterOption'
+import ToggleVisible from '../components/ToggleVisible'
+import FilterIcon from '../assets/filter.svg'
 import { single, multi } from './data'
 
 storiesOf('ClassInfo', module)
@@ -31,4 +33,16 @@ storiesOf('FilterOption', module)
 storiesOf('ClassList', module)
   .add('basic', () => (
     <ClassList classes={multi} />
+  ))
+
+storiesOf('ToggleVisible', module)
+  .add('visible', () => (
+    <ToggleVisible visible={true} text="Filter and Sort Classes" icon={FilterIcon}>
+      <ClassFilter classes={multi} />
+    </ToggleVisible>
+  ))
+  .add('hidden', () => (
+    <ToggleVisible visible={false} text="Filter and Sort Classes" icon={FilterIcon}>
+      <ClassFilter classes={multi} />
+    </ToggleVisible>
   ))
