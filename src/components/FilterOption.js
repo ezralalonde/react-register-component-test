@@ -10,7 +10,7 @@ const FilterOption = ({name}) => (
 )
 
 FilterOption.propTypes = {
-  name: React.PropTypes.string.isRequired,
+  name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
 }
 
 export default FilterOption

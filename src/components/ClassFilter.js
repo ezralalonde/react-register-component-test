@@ -21,7 +21,7 @@ const ClassFilter = ({classes}) => (
 )
 
 ClassFilter.propTypes = {
-  classes: React.PropTypes.object.isRequired,
+  classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 }
 
 export default ClassFilter

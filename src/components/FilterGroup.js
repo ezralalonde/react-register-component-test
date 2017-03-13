@@ -13,7 +13,8 @@ const FilterGroup = ({heading, options}) => (
 
 FilterGroup.propTypes = {
   heading: React.PropTypes.string.isRequired,
-  options: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  options: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string,
+                                                              React.PropTypes.number])).isRequired,
 }
 
 export default FilterGroup
