@@ -22,7 +22,7 @@ const ClassInfo = ({
       <span>{day}</span> at <span>{time}</span> at <span>{location}</span>.
     </p>
     <p>
-      <span>${cost}</span> <span>{leads+follows} / {cap}</span> <span>{leads - follows}</span>
+      <span>${cost}</span> <span>L:{leads}</span> <span>F:{follows}</span> <span>{leads+follows} / {cap}</span> <span>{leads - follows}</span>
     </p>
   </div>
 )
