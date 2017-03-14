@@ -36,7 +36,7 @@ storiesOf('FilterGroup', module)
 
 storiesOf('FilterOption', module)
   .add('basic', () => (
-    <FilterOption name="Test" />
+    <FilterOption value="Value" group="Group" />
   ))
 
 storiesOf('SortOption', module)
@@ -70,25 +70,25 @@ storiesOf('ClassList', module)
     <ClassList classes={multi} />
   ))
   .add('sort(number)', () => (
-    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.number)} />
+    <ClassList classes={multi.sort(sortByNumber(xx => xx.number))} />
   ))
   .add('sort(number desc)', () => (
-    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.number)} desc/>
+    <ClassList classes={multi.sort(sortByNumber(xx => xx.number)).reverse()}/>
   ))
   .add('sort(day)', () => (
-    <ClassList classes={multi} sortMethod={sortByDay} />
+    <ClassList classes={multi.sort(sortByDay)} />
   ))
   .add('sort(location)', () => (
-    <ClassList classes={multi} sortMethod={sortByString(xx => xx.location)} />
+    <ClassList classes={multi.sort(sortByString(xx => xx.location))} />
   ))
   .add('sort(level)', () => (
-    <ClassList classes={multi} sortMethod={sortByLevel}/>
+    <ClassList classes={multi.sort(sortByLevel)}/>
   ))
   .add('sort(cost)', () => (
-    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.cost)} />
+    <ClassList classes={multi.sort(sortByNumber(xx => xx.cost))} />
   ))
   .add('sort(balance)', () => (
-    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.leads - xx.follows)} />
+    <ClassList classes={multi.sort(sortByNumber(xx => xx.leads - xx.follows))} />
   ))
 
 const sorts = [
