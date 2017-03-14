@@ -4,8 +4,11 @@ import { storiesOf, action, linkTo } from '@kadira/storybook'
 import ClassInfo from '../components/ClassInfo'
 import ClassFilter from '../components/ClassFilter'
 import ClassList from '../components/ClassList'
+import ClassPicker from '../components/ClassPicker'
 import FilterGroup from '../components/FilterGroup'
 import FilterOption from '../components/FilterOption'
+import SortOption from '../components/SortOption'
+import SortGroup from '../components/SortGroup'
 import ToggleVisible from '../components/ToggleVisible'
 import FilterIcon from '../assets/filter.svg'
 import { single, multi } from './data'
@@ -36,6 +39,10 @@ storiesOf('FilterOption', module)
     <FilterOption name="Test" />
   ))
 
+storiesOf('SortOption', module)
+  .add('basic', () => (
+    <SortOption name="Test" group="Test" />
+  ))
 
 const sortByNumber = (getValue) => {
   return (xx, yy) => getValue(xx) - getValue(yy)
@@ -84,6 +91,20 @@ storiesOf('ClassList', module)
     <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.leads - xx.follows)} />
   ))
 
+const sorts = [
+  {key: "number", name:"Number", method: sortByNumber(xx => xx.number)},
+  {key: "level", name:"Level", method: sortByLevel},
+  {key: "day", name:"Day", method: sortByDay},
+  {key: "location", name:"Location", method: sortByString(xx => xx.location)},
+  {key: "cost", name:"Price", method: sortByNumber(xx => xx.cost)},
+]
+
+storiesOf('SortGroup', module)
+  .add('basic', () => (
+    <SortGroup name="Test" options={sorts} />
+  ))
+
+
 storiesOf('ToggleVisible', module)
   .add('visible', () => (
     <ToggleVisible visible={true} text="Filter and Sort Classes" icon={FilterIcon}>
@@ -94,4 +115,17 @@ storiesOf('ToggleVisible', module)
     <ToggleVisible visible={false} text="Filter and Sort Classes" icon={FilterIcon}>
       <ClassFilter classes={multi} filters={filters} />
     </ToggleVisible>
+  ))
+
+storiesOf('ClassPicker', module)
+  .add('basic', () => (
+    <div>
+      <h1>A class picker example</h1>
+      <ClassPicker
+        classes={multi}
+        classFilterOptions={filters}
+        classSortOptions={sorts}
+        toggleText={"Toggle"}
+      />
+    </div>
   ))
