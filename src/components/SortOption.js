@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SortOption = ({name, group, onClick}) => (
+const SortOption = ({name, group, setSort}) => (
   <div>
     <label>
-      <input type="radio" name={group} value={name} onClick={onClick} />
+      <input type="radio" name={group} value={name} onChange={setSort} />
       {name}
     </label>
   </div>
@@ -12,7 +12,7 @@ const SortOption = ({name, group, onClick}) => (
 SortOption.propTypes = {
   group: React.PropTypes.string.isRequired,
   name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-  onClick: React.PropTypes.func.isRequired,
+  setSort: React.PropTypes.func.isRequired,
 }
 
 export default SortOption

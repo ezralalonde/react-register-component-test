@@ -5,7 +5,7 @@ import SortOption from './SortOption'
 const SortGroup = ({name, options, setSort}) => (
   <div className='sort-group' id={name}>
     <h4>{name}</h4>
-    {options.map((xx) => <SortOption name={xx.name} group={name} onClick={() => setSort(xx.method)} />)}
+    {options.map((xx) => <SortOption name={xx.name} group={name} setSort={() => setSort(xx.method)} />)}
   </div>
 )
 

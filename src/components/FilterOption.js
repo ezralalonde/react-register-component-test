@@ -4,7 +4,7 @@ const FilterOption = ({group, value, setStatus}) => (
   <div>
     <label>
       <input type="checkbox" name={group} value={value}
-             onClick={(ee) => setStatus(group, value, ee.target.checked)}
+             onChange={(ee) => setStatus(group, value, ee.target.checked)}
       />
       {value}
     </label>
