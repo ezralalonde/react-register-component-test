@@ -5,9 +5,13 @@ import SortOption from './SortOption'
 const SortGroup = ({name, options, setSort}) => (
   <div className='sort-group' id={name}>
     <h4>{name}</h4>
-    {options.map((xx) => <SortOption name={xx.name} group={name} setSort={() => setSort(xx.method)} />)}
+    {options.map((xx) => <SortOption key={xx.name} name={xx.name} group={name} setSort={() => setSort(xx.method)} />)}
   </div>
 )
+
+SortGroup.defaultProps = {
+  setSort: console.log
+}
 
 SortGroup.propTypes = {
   name: React.PropTypes.string.isRequired,

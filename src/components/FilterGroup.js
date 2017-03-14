@@ -21,7 +21,7 @@ FilterGroup.propTypes = {
   heading: React.PropTypes.string.isRequired,
   options: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string,
                                                               React.PropTypes.number])).isRequired,
-  setStatus: React.PropTypes.func.isRequired,
+  setStatus: React.PropTypes.func,
 }
 
 export default FilterGroup

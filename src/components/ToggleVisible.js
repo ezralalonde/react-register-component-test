@@ -45,8 +45,8 @@ class ToggleVisible extends React.Component {
   }
 
   static propTypes = {
-    children: React.PropTypes.object.isRequired,
-    icon: React.PropTypes.string.isRequired,
+    children: React.PropTypes.node.isRequired,
+    icon: React.PropTypes.string,
     text: React.PropTypes.string.isRequired,
     visible: React.PropTypes.bool.isRequired,
   }

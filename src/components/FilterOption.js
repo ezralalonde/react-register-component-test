@@ -11,9 +11,13 @@ const FilterOption = ({group, value, setStatus}) => (
   </div>
 )
 
+FilterOption.defaultProps = {
+  setStatus: console.log
+}
+
 FilterOption.propTypes = {
   group: React.PropTypes.string.isRequired,
-  setStatus: React.PropTypes.func.isRequired,
+  setStatus: React.PropTypes.func,
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
 }
 

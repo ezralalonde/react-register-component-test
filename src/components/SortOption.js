@@ -9,6 +9,10 @@ const SortOption = ({name, group, setSort}) => (
   </div>
 )
 
+SortOption.defaultProps = {
+  setSort: console.log
+}
+
 SortOption.propTypes = {
   group: React.PropTypes.string.isRequired,
   name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
