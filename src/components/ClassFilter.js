@@ -15,7 +15,7 @@ const ClassFilter = ({classes, filters, setStatus}) => (
   <div>
     {
       filters.map((xx) => <FilterGroup
-                            key={xx.key}
+                            index={xx.key}
                             heading={xx.name}
                             options={getOptions(xx.key, classes)}
                             setStatus={setStatus}
