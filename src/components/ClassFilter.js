@@ -11,17 +11,17 @@ const getOptions = (key, classes) => {
   return options
 }
 
-const ClassFilter = ({classes}) => (
+const ClassFilter = ({classes, filters}) => (
   <div>
-    <FilterGroup heading="Level" options={getOptions('level', classes)} />
-    <FilterGroup heading="Price" options={getOptions('cost', classes)} />
-    <FilterGroup heading="Location" options={getOptions('location', classes)} />
-    <FilterGroup heading="Day" options={getOptions('day', classes)} />
+    {
+      filters.map((xx) => <FilterGroup heading={xx.name} options={getOptions(xx.key, classes)} />)
+    }
   </div>
 )
 
 ClassFilter.propTypes = {
   classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  filters: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
 }
 
 export default ClassFilter

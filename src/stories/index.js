@@ -15,9 +15,15 @@ storiesOf('ClassInfo', module)
     <ClassInfo {...single} />
   ))
 
+const filters = [
+  {key: "level", name:"Level"},
+  {key: "day", name:"Day"},
+  {key: "location", name:"Location"},
+  {key: "cost", name:"Price"},
+]
 storiesOf('ClassFilter', module)
   .add('basic', () => (
-    <ClassFilter classes={multi} />
+    <ClassFilter classes={multi} filters={filters} />
   ))
 
 storiesOf('FilterGroup', module)
@@ -75,17 +81,17 @@ storiesOf('ClassList', module)
     <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.cost)} />
   ))
   .add('sort(balance)', () => (
-    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.leads - xx.follows)}/>
+    <ClassList classes={multi} sortMethod={sortByNumber(xx => xx.leads - xx.follows)} />
   ))
 
 storiesOf('ToggleVisible', module)
   .add('visible', () => (
     <ToggleVisible visible={true} text="Filter and Sort Classes" icon={FilterIcon}>
-      <ClassFilter classes={multi} />
+      <ClassFilter classes={multi} filters={filters} />
     </ToggleVisible>
   ))
   .add('hidden', () => (
     <ToggleVisible visible={false} text="Filter and Sort Classes" icon={FilterIcon}>
-      <ClassFilter classes={multi} />
+      <ClassFilter classes={multi} filters={filters} />
     </ToggleVisible>
   ))
