@@ -11,10 +11,14 @@ const getOptions = (key, classes) => {
   return options
 }
 
-const ClassFilter = ({classes, filters}) => (
+const ClassFilter = ({classes, filters, setStatus}) => (
   <div>
     {
-      filters.map((xx) => <FilterGroup heading={xx.name} options={getOptions(xx.key, classes)} />)
+      filters.map((xx) => <FilterGroup 
+                            heading={xx.name}
+                            options={getOptions(xx.key, classes)}
+                            setStatus={setStatus}
+                          />)
     }
   </div>
 )
@@ -22,6 +26,7 @@ const ClassFilter = ({classes, filters}) => (
 ClassFilter.propTypes = {
   classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   filters: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  setStatus: React.PropTypes.func.isRequired,
 }
 
 export default ClassFilter

@@ -9,7 +9,6 @@ const rev = (list, descending) => {
   return list
 }
 
-
 const ClassList = ({classes, sortMethod, desc}) => (
   <div className="classList">
     <ul>

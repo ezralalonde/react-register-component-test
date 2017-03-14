@@ -1,16 +1,20 @@
 import React from 'react'
 
-const FilterOption = ({name}) => (
+const FilterOption = ({group, value, setStatus}) => (
   <div>
     <label>
-      <input type="checkbox" value={name}/>
+      <input type="checkbox" name={group} value={value}
+             onClick={(ee) => setStatus(group, value, ee.target.checked)}
+      />
+      {value}
     </label>
-    {name}
   </div>
 )
 
 FilterOption.propTypes = {
-  name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
+  group: React.PropTypes.string.isRequired,
+  setStatus: React.PropTypes.func.isRequired,
+  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
 }
 
 export default FilterOption

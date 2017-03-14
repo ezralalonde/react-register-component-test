@@ -7,12 +7,41 @@ import ClassList from './ClassList'
 
 class ClassPicker extends React.Component {
   state = {
-    activeSort: this.props.defaultSort
+    activeSort: this.props.defaultSort,
+    checkStatus: {},
   }
 
   setSort = (method) => {
-    this.setState({activeSort: method})
-    console.log(method)
+    this.setState((prev, props) => {
+      return {
+        activeSort: method,
+      }
+    })
+  }
+
+  addStatus = (status, group, value) => {
+    if (!status) {
+      status = {}
+    }
+    if (!status[group]) {
+      status[group] = []
+    }
+    status[group].push(value)
+    return status
+  }
+
+  setChecked = (group, value, checked) => {
+    this.setState((prev, props) => {
+      let checkStatus = prev.checkStatus
+      if (checked) {
+        this.addStatus(checkStatus, group, value)
+      } else {
+        checkStatus[group] = null
+      }
+      return {
+        checkStatus
+      }
+    })
   }
 
   render() {
@@ -33,7 +62,7 @@ class ClassPicker extends React.Component {
       <div className="class-picker">
         <ToggleVisible visible={true} text={toggleText} icon={toggleIcon}>
           <SortGroup name="Sort" options={classSortOptions} setSort={this.setSort} />
-          <ClassFilter classes={classes} filters={classFilterOptions} />
+          <ClassFilter classes={classes} filters={classFilterOptions} setStatus={this.setChecked} />
         </ToggleVisible>
         <ClassList classes={classes} sortMethod={activeSort} />
       </div>
