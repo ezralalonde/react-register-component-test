@@ -35,6 +35,9 @@ class ClassPicker extends React.Component {
     if (index !== -1) {
       status[group].splice(index, 1)
     }
+    if (status[group].length === 0) {
+      delete status[group]
+    }
   }
 
   setChecked = (group, value, checked) => {
