@@ -30,18 +30,39 @@ class ClassPicker extends React.Component {
     return status
   }
 
+  deleteStatus = (status, group, value) => {
+    const index = status[group].indexOf(value)
+    if (index !== -1) {
+      status[group].splice(index, 1)
+    }
+  }
+
   setChecked = (group, value, checked) => {
     this.setState((prev, props) => {
       let checkStatus = prev.checkStatus
       if (checked) {
         this.addStatus(checkStatus, group, value)
       } else {
-        checkStatus[group] = null
+        this.deleteStatus(checkStatus, group, value)
       }
+      console.log(checkStatus)
       return {
         checkStatus
       }
     })
+  }
+
+  filterClasses = (xx) => {
+    const {
+      checkStatus
+    } = this.state
+    let display = true
+    console.log(checkStatus)
+    Object.keys(checkStatus).map((yy) => {
+      console.log(`${yy} new`)
+      display = display && checkStatus[yy].reduce((sum, zz) => sum || xx[yy] === zz, false)
+    })
+    return display
   }
 
   render() {
@@ -64,7 +85,7 @@ class ClassPicker extends React.Component {
           <SortGroup name="Sort" options={classSortOptions} setSort={this.setSort} />
           <ClassFilter classes={classes} filters={classFilterOptions} setStatus={this.setChecked} />
         </ToggleVisible>
-        <ClassList classes={classes.slice().sort(activeSort)} />
+        <ClassList classes={classes.slice().sort(activeSort).filter(this.filterClasses)} />
       </div>
     )
   }
