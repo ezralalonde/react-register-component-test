@@ -15,6 +15,7 @@ const ClassFilter = ({classes, filters, setStatus, checkedBoxes}) => (
   <div>
     {
       filters.map((xx) => <FilterGroup
+                            key={xx.key}
                             index={xx.key}
                             heading={xx.name}
                             options={getOptions(xx.key, classes)}
@@ -26,6 +27,7 @@ const ClassFilter = ({classes, filters, setStatus, checkedBoxes}) => (
 )
 
 ClassFilter.propTypes = {
+  checkedBoxes: React.PropTypes.object.isRequired,
   classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   filters: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   setStatus: React.PropTypes.func,

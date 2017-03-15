@@ -26,22 +26,24 @@ const filters = [
 ]
 storiesOf('ClassFilter', module)
   .add('basic', () => (
-    <ClassFilter classes={multi} filters={filters} />
+    <ClassFilter classes={multi} filters={filters}
+     checkedBoxes={{}} setStatus={action('setStatus')} />
   ))
 
 storiesOf('FilterGroup', module)
   .add('basic', () => (
-    <FilterGroup heading="Hello World" options={["one", "two", "three"]} />
+    <FilterGroup heading="Hello World" options={["one", "two", "three"]}
+      checkedBoxes={[]} setStatus={action('setStatus')} index="filtergroup_index" />
   ))
 
 storiesOf('FilterOption', module)
   .add('basic', () => (
-    <FilterOption value="Value" group="Group" />
+    <FilterOption value="Value" group="Group" setStatus={action('setStatus')} index="index" />
   ))
 
 storiesOf('SortOption', module)
   .add('basic', () => (
-    <SortOption name="Test" group="Test" />
+    <SortOption name="Test" group="Test" setSort={action('setSort')} />
   ))
 
 const sortByNumber = (getValue) => {
@@ -101,19 +103,18 @@ const sorts = [
 
 storiesOf('SortGroup', module)
   .add('basic', () => (
-    <SortGroup name="Test" options={sorts} />
+    <SortGroup name="Test" options={sorts} setSort={action('setSort')} />
   ))
-
 
 storiesOf('ToggleVisible', module)
   .add('visible', () => (
     <ToggleVisible visible={true} text="Filter and Sort Classes" icon={FilterIcon}>
-      <ClassFilter classes={multi} filters={filters} />
+      <ClassFilter classes={multi} filters={filters} checkedBoxes={{}} setStatus={action('setStatus')} />
     </ToggleVisible>
   ))
   .add('hidden', () => (
     <ToggleVisible visible={false} text="Filter and Sort Classes" icon={FilterIcon}>
-      <ClassFilter classes={multi} filters={filters} />
+      <ClassFilter classes={multi} filters={filters} checkedBoxes={{}} setStatus={action('setStatus')} />
     </ToggleVisible>
   ))
 
@@ -125,6 +126,7 @@ storiesOf('ClassPicker', module)
         classes={multi}
         classFilterOptions={filters}
         classSortOptions={sorts}
+        toggleIcon={FilterIcon}
         toggleText={"Toggle"}
       />
     </div>

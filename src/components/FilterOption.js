@@ -13,13 +13,14 @@ const FilterOption = ({index, group, value, setStatus, checked}) => (
 )
 
 FilterOption.defaultProps = {
-  setStatus: console.log
+  checked: false,
 }
 
 FilterOption.propTypes = {
+  checked: React.PropTypes.bool.isRequired,
   index: React.PropTypes.string.isRequired,
   group: React.PropTypes.string.isRequired,
-  setStatus: React.PropTypes.func,
+  setStatus: React.PropTypes.func.isRequired,
   value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
 }
 

@@ -24,6 +24,7 @@ const FilterGroup = ({index, heading, options, setStatus, checkedBoxes}) => (
 )
 
 FilterGroup.propTypes = {
+  checkedBoxes: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   index: React.PropTypes.string.isRequired,
   heading: React.PropTypes.string.isRequired,
   options: React.PropTypes.arrayOf(React.PropTypes.oneOfType([React.PropTypes.string,
