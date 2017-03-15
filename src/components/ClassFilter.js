@@ -11,7 +11,7 @@ const getOptions = (key, classes) => {
   return options
 }
 
-const ClassFilter = ({classes, filters, setStatus}) => (
+const ClassFilter = ({classes, filters, setStatus, checkedBoxes}) => (
   <div>
     {
       filters.map((xx) => <FilterGroup
@@ -19,6 +19,7 @@ const ClassFilter = ({classes, filters, setStatus}) => (
                             heading={xx.name}
                             options={getOptions(xx.key, classes)}
                             setStatus={setStatus}
+                            checkedBoxes={checkedBoxes[xx.key] || []}
                           />)
     }
   </div>

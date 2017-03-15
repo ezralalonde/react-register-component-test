@@ -86,7 +86,12 @@ class ClassPicker extends React.Component {
       <div className="class-picker">
         <ToggleVisible visible={true} text={toggleText} icon={toggleIcon}>
           <SortGroup name="Sort" options={classSortOptions} setSort={this.setSort} />
-          <ClassFilter classes={classes} filters={classFilterOptions} setStatus={this.setChecked} />
+          <ClassFilter
+            classes={classes}
+            filters={classFilterOptions}
+            setStatus={this.setChecked} 
+            checkedBoxes={this.state.checkStatus}
+          />
         </ToggleVisible>
         <ClassList classes={classes.slice().sort(activeSort).filter(this.filterClasses)} />
       </div>

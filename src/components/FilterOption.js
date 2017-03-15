@@ -1,10 +1,11 @@
 import React from 'react'
 
-const FilterOption = ({index, group, value, setStatus}) => (
+const FilterOption = ({index, group, value, setStatus, checked}) => (
   <div>
     <label>
       <input type="checkbox" name={group} value={value}
              onChange={(ee) => setStatus(index, value, ee.target.checked)}
+             checked={checked}
       />
       {value}
     </label>

@@ -4,13 +4,19 @@ import FilterOption from './FilterOption'
 
 import '../styles/FilterGroup.css'
 
-const FilterGroup = ({index, heading, options, setStatus}) => (
+const FilterGroup = ({index, heading, options, setStatus, checkedBoxes}) => (
   <div className='filter-group'>
     <h4>{heading}</h4>
     {options.map((xx) => {
       return (
         <li key={xx}>
-          <FilterOption index={index} group={heading} value={xx} setStatus={setStatus}/>
+          <FilterOption
+            index={index}
+            group={heading}
+            value={xx}
+            setStatus={setStatus}
+            checked={(() => checkedBoxes.indexOf(xx) !== -1)()}
+          />
         </li>
       )}
     )}
