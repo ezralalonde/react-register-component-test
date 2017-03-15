@@ -4,7 +4,7 @@ import ClassAddButton from './ClassAddButton'
 import '../styles/ClassList.css'
 
 const ClassList = ({buttons, classes}) => (
-  <div className="classList">checkedBoxes
+  <div className="classList">
     <ul>
       {classes.map((xx) => (
         <li key={xx.number}>
