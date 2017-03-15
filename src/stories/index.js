@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 
+import ClassAddButton from '../components/ClassAddButton'
 import ClassInfo from '../components/ClassInfo'
 import ClassFilter from '../components/ClassFilter'
 import ClassList from '../components/ClassList'
@@ -13,8 +14,17 @@ import ToggleVisible from '../components/ToggleVisible'
 import FilterIcon from '../assets/filter.svg'
 import { single, multi } from './data'
 
+storiesOf('ClassAddButton', module)
+  .add('basic', () => (
+    <ClassAddButton onClick={action('button clicked')}>Button Text</ClassAddButton>
+  ))
+
+
 storiesOf('ClassInfo', module)
   .add('basic', () => (
+    <ClassInfo {...single} />
+  ))
+  .add('with button', () => (
     <ClassInfo {...single} />
   ))
 
@@ -67,9 +77,17 @@ const sortByString = (getValue) => {
   return (xx, yy) => getValue(xx) > getValue(yy)
 }
 
+const buttons = [
+  {text: (xx) => `Add lead to ${xx.number}`, index: 'lead', onClick: action('onClick:lead')},
+  {text: (xx) => `Add follow to ${xx.number}`, index: 'follow', onClick: action('onClick:follow')},
+]
+
 storiesOf('ClassList', module)
   .add('basic', () => (
     <ClassList classes={multi} />
+  ))
+  .add('with buttons', () => (
+    <ClassList classes={multi} buttons={buttons} />
   ))
   .add('sort(number)', () => (
     <ClassList classes={multi.sort(sortByNumber(xx => xx.number))} />
@@ -124,6 +142,19 @@ storiesOf('ClassPicker', module)
       <h1>A class picker example</h1>
       <ClassPicker
         classes={multi}
+        classFilterOptions={filters}
+        classSortOptions={sorts}
+        toggleIcon={FilterIcon}
+        toggleText={"Toggle"}
+      />
+    </div>
+  ))
+  .add('with buttons', () => (
+    <div>
+      <h1>A class picker example</h1>
+      <ClassPicker
+        classes={multi}
+        classButtons={buttons}
         classFilterOptions={filters}
         classSortOptions={sorts}
         toggleIcon={FilterIcon}

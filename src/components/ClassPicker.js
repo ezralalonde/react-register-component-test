@@ -71,6 +71,7 @@ class ClassPicker extends React.Component {
   render() {
     const {
       classes,
+      classButtons,
       classFilterOptions,
       classSortMethod,
       classSortOptions,
@@ -93,7 +94,10 @@ class ClassPicker extends React.Component {
             checkedBoxes={this.state.checkStatus}
           />
         </ToggleVisible>
-        <ClassList classes={classes.slice().sort(activeSort).filter(this.filterClasses)} />
+        <ClassList
+          buttons={classButtons}
+          classes={classes.slice().sort(activeSort).filter(this.filterClasses)}
+        />
       </div>
     )
   }
@@ -105,6 +109,7 @@ class ClassPicker extends React.Component {
   static propTypes = {
     defaultSort: React.PropTypes.func,
     classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    classButtons: React.PropTypes.arrayOf(React.PropTypes.object),
     classFilterOptions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     classSortOptions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     toggleIcon: React.PropTypes.string,
