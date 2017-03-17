@@ -20,35 +20,23 @@ class ClassPicker extends React.Component {
   }
 
   addStatus = (status, group, value) => {
-    if (!status) {
-      status = {}
-    }
-    if (!status[group]) {
-      status[group] = []
-    }
+    status = status || {}
+    status[group] = status[group] || []
     status[group].push(value)
     return status
   }
 
   deleteStatus = (status, group, value) => {
     const index = status[group].indexOf(value)
-    if (index !== -1) {
-      status[group].splice(index, 1)
-    }
-    if (status[group].length === 0) {
-      delete status[group]
-    }
+    index !== -1 && status[group].splice(index, 1)
+    status[group].length === 0 && delete status[group]
   }
 
   setChecked = (group, value, checked) => {
     this.setState((prev, props) => {
       let checkStatus = prev.checkStatus
-      if (checked) {
-        this.addStatus(checkStatus, group, value)
-      } else {
-        this.deleteStatus(checkStatus, group, value)
-      }
-      console.log(checkStatus)
+      checked ? this.addStatus(checkStatus, group, value) :
+                this.deleteStatus(checkStatus, group, value)
       return {
         checkStatus
       }
@@ -60,9 +48,7 @@ class ClassPicker extends React.Component {
       checkStatus
     } = this.state
     let display = true
-    console.log(checkStatus)
     Object.keys(checkStatus).map((yy) => {
-      console.log(`${yy} new`)
       display = display && checkStatus[yy].reduce((sum, zz) => sum || xx[yy] === zz, false)
     })
     return display

@@ -4,9 +4,7 @@ import FilterGroup from './FilterGroup'
 const getOptions = (key, classes) => {
   let options = []
   classes.map((xx) => {
-    if (!!xx[key] && !options.includes(xx[key])) {
-      options.push(xx[key])
-    }
+    !!xx[key] && !options.includes(xx[key]) && options.push(xx[key])
   })
   return options
 }

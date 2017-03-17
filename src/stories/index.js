@@ -24,9 +24,6 @@ storiesOf('ClassInfo', module)
   .add('basic', () => (
     <ClassInfo {...single} />
   ))
-  .add('with button', () => (
-    <ClassInfo {...single} />
-  ))
 
 const filters = [
   {key: "level", name:"Level"},
@@ -45,10 +42,17 @@ storiesOf('FilterGroup', module)
     <FilterGroup heading="Hello World" options={["one", "two", "three"]}
       checkedBoxes={[]} setStatus={action('setStatus')} index="filtergroup_index" />
   ))
+  .add('one checked', () => (
+    <FilterGroup heading="Hello World" options={["one", "two", "three"]}
+      checkedBoxes={["one"]} setStatus={action('setStatus')} index="filtergroup_index" />
+  ))
 
 storiesOf('FilterOption', module)
   .add('basic', () => (
     <FilterOption value="Value" group="Group" setStatus={action('setStatus')} index="index" />
+  ))
+  .add('checked', () => (
+    <FilterOption value="Value" group="Group" setStatus={action('setStatus')} index="index" checked={true} />
   ))
 
 storiesOf('SortOption', module)
