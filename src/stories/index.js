@@ -10,6 +10,8 @@ import FilterGroup from '../components/FilterGroup'
 import FilterOption from '../components/FilterOption'
 import SortOption from '../components/SortOption'
 import SortGroup from '../components/SortGroup'
+import Order from '../components/Order'
+import OrderItem from '../components/OrderItem'
 import ToggleVisible from '../components/ToggleVisible'
 import FilterIcon from '../assets/filter.svg'
 import { single, multi } from './data'
@@ -165,4 +167,21 @@ storiesOf('ClassPicker', module)
         toggleText={"Toggle"}
       />
     </div>
+  ))
+
+const orders = [
+  {itemKey: 'itemKey-1', ...multi[0], role: 'lead'},
+  {itemKey: 'itemKey-2', ...multi[0], role: 'follow'},
+  {itemKey: 'itemKey-3', ...multi[1], role: 'follow'},
+  {itemKey: 'itemKey-4', ...multi[1], role: 'follow'},
+]
+
+storiesOf('Order', module)
+  .add('default', () => (
+    <Order orders={orders} removeFn={action('removeOrder')}/>
+  ))
+
+storiesOf('OrderItem', module)
+  .add('default', () => (
+    <OrderItem {...orders[0]} fn={action('removeOrderItem')}/>
   ))
