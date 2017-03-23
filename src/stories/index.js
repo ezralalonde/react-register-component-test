@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 
@@ -14,7 +15,10 @@ import Order from '../components/Order'
 import OrderItem from '../components/OrderItem'
 import ToggleVisible from '../components/ToggleVisible'
 import FilterIcon from '../assets/filter.svg'
-import { single, multi } from './data'
+import {
+  single, multi, filters, orders, sorts,
+  sortByDay, sortByLevel, sortByNumber, sortByString
+} from './data'
 
 storiesOf('ClassAddButton', module)
   .add('basic', () => (
@@ -27,12 +31,6 @@ storiesOf('ClassInfo', module)
     <ClassInfo {...single} />
   ))
 
-const filters = [
-  {key: "level", name:"Level"},
-  {key: "day", name:"Day"},
-  {key: "location", name:"Location"},
-  {key: "cost", name:"Price"},
-]
 storiesOf('ClassFilter', module)
   .add('basic', () => (
     <ClassFilter classes={multi} filters={filters}
@@ -62,27 +60,6 @@ storiesOf('SortOption', module)
     <SortOption name="Test" group="Test" setSort={action('setSort')} />
   ))
 
-const sortByNumber = (getValue) => {
-  return (xx, yy) => getValue(xx) - getValue(yy)
-}
-
-const sortByList = (getValue, list) => {
-  return (xx, yy) => list.indexOf(getValue(xx)) > list.indexOf(getValue(yy))
-}
-
-const sortByDay = sortByList(xx => xx.day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'])
-
-const levelList = [
-  'Beginner', 'Beginner Plus', 'Beginner Half-Class',
-  'Intermediate', 'Intermediate Plus',
-  'Advanced'
-]
-const sortByLevel = sortByList(xx => xx.level, levelList)
-
-const sortByString = (getValue) => {
-  return (xx, yy) => getValue(xx) > getValue(yy)
-}
-
 const buttons = [
   {text: (xx) => `Add lead to ${xx.number}`, index: 'lead', onClick: action('onClick:lead')},
   {text: (xx) => `Add follow to ${xx.number}`, index: 'follow', onClick: action('onClick:follow')},
@@ -96,10 +73,10 @@ storiesOf('ClassList', module)
     <ClassList classes={multi} buttons={buttons} />
   ))
   .add('sort(number)', () => (
-    <ClassList classes={multi.sort(sortByNumber(xx => xx.number))} />
+    <ClassList classes={multi.sort(sortByNumber(xx => Number(xx.number)))} />
   ))
   .add('sort(number desc)', () => (
-    <ClassList classes={multi.sort(sortByNumber(xx => xx.number)).reverse()}/>
+    <ClassList classes={multi.sort(sortByNumber(xx => Number(xx.number))).reverse()}/>
   ))
   .add('sort(day)', () => (
     <ClassList classes={multi.sort(sortByDay)} />
@@ -116,14 +93,6 @@ storiesOf('ClassList', module)
   .add('sort(balance)', () => (
     <ClassList classes={multi.sort(sortByNumber(xx => xx.leads - xx.follows))} />
   ))
-
-const sorts = [
-  {key: "number", name:"Number", method: sortByNumber(xx => xx.number)},
-  {key: "level", name:"Level", method: sortByLevel},
-  {key: "day", name:"Day", method: sortByDay},
-  {key: "location", name:"Location", method: sortByString(xx => xx.location)},
-  {key: "cost", name:"Price", method: sortByNumber(xx => xx.cost)},
-]
 
 storiesOf('SortGroup', module)
   .add('basic', () => (
@@ -164,17 +133,10 @@ storiesOf('ClassPicker', module)
         classFilterOptions={filters}
         classSortOptions={sorts}
         toggleIcon={FilterIcon}
-        toggleText={"Toggle"}
+        toggleText="Toggle"
       />
     </div>
   ))
-
-const orders = [
-  {itemKey: 'itemKey-1', ...multi[0], role: 'lead'},
-  {itemKey: 'itemKey-2', ...multi[0], role: 'follow'},
-  {itemKey: 'itemKey-3', ...multi[1], role: 'follow'},
-  {itemKey: 'itemKey-4', ...multi[1], role: 'follow'},
-]
 
 storiesOf('Order', module)
   .add('default', () => (

@@ -1,8 +1,11 @@
+// @flow
 import React from 'react'
-
+import type {ToggleVisibleComponentProps} from '../types'
 import '../styles/ToggleVisible.css'
 
 class ToggleVisible extends React.Component {
+  props: ToggleVisibleComponentProps
+  
   state = {
     visible: this.props.visible,
   }
@@ -20,7 +23,7 @@ class ToggleVisible extends React.Component {
       children,
       icon,
       text,
-    } = this.props
+    }:ToggleVisibleComponentProps = this.props
 
     const {
       visible
@@ -38,17 +41,6 @@ class ToggleVisible extends React.Component {
         }
       </div>
     )
-  }
-
-  defaultProps = {
-    visible: false,
-  }
-
-  static propTypes = {
-    children: React.PropTypes.node.isRequired,
-    icon: React.PropTypes.string,
-    text: React.PropTypes.string.isRequired,
-    visible: React.PropTypes.bool.isRequired,
   }
 }
 

@@ -1,17 +1,21 @@
+// @flow
 import React from 'react'
 
 import ToggleVisible from './ToggleVisible'
 import SortGroup from './SortGroup'
 import ClassFilter from './ClassFilter'
 import ClassList from './ClassList'
+import type {ClassPickerComponentProps, ClassInfoType, CheckedStatus} from '../types'
 
 class ClassPicker extends React.Component {
+  props: ClassPickerComponentProps
+
   state = {
-    activeSort: this.props.defaultSort,
+    activeSort: this.props.classSortMethod,
     checkStatus: {},
   }
 
-  setSort = (method) => {
+  setSort = (method: Function) => {
     this.setState((prev, props) => {
       return {
         activeSort: method,
@@ -19,20 +23,20 @@ class ClassPicker extends React.Component {
     })
   }
 
-  addStatus = (status, group, value) => {
+  addStatus = (status: CheckedStatus, group: string, value: string) => {
     status = status || {}
     status[group] = status[group] || []
     status[group].push(value)
     return status
   }
 
-  deleteStatus = (status, group, value) => {
+  deleteStatus = (status: CheckedStatus, group: string, value: string) => {
     const index = status[group].indexOf(value)
     index !== -1 && status[group].splice(index, 1)
     status[group].length === 0 && delete status[group]
   }
 
-  setChecked = (group, value, checked) => {
+  setChecked = (group: string, value: string, checked: boolean) => {
     this.setState((prev, props) => {
       let checkStatus = prev.checkStatus
       checked ? this.addStatus(checkStatus, group, value) :
@@ -43,7 +47,7 @@ class ClassPicker extends React.Component {
     })
   }
 
-  filterClasses = (xx) => {
+  filterClasses = (xx: ClassInfoType) => {
     const {
       checkStatus
     } = this.state
@@ -59,11 +63,11 @@ class ClassPicker extends React.Component {
       classes,
       classButtons,
       classFilterOptions,
-      classSortMethod,
+      classSortMethod = (xx: ClassInfoType, yy: ClassInfoType) => Number(xx.number) - Number(yy.number),
       classSortOptions,
       toggleIcon,
       toggleText,
-    } = this.props
+    }:ClassPickerComponentProps = this.props
 
     const {
       activeSort
@@ -86,20 +90,6 @@ class ClassPicker extends React.Component {
         />
       </div>
     )
-  }
-
-  defaultProps = {
-    defaultSort: (xx, yy) => xx.number - yy.number
-  }
-
-  static propTypes = {
-    defaultSort: React.PropTypes.func,
-    classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    classButtons: React.PropTypes.arrayOf(React.PropTypes.object),
-    classFilterOptions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    classSortOptions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    toggleIcon: React.PropTypes.string,
-    toggleText: React.PropTypes.string.isRequired,
   }
 }
 

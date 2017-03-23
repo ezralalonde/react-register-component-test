@@ -1,14 +1,11 @@
+// @flow
 import React from 'react'
+import type {ClassAddButtonComponentProps} from '../types'
 
-const ClassAddButton = ({children, onClick}) => (
+const ClassAddButton = ({children, onClick}: ClassAddButtonComponentProps) => (
   <button onClick={onClick}>
     {children}
   </button>
 )
-
-ClassAddButton.propTypes = {
-  children: React.PropTypes.node,
-  onClick: React.PropTypes.func.isRequired,
-}
 
 export default ClassAddButton

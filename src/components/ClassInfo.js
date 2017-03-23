@@ -1,5 +1,7 @@
+// @flow
 import React from 'react'
 import '../styles/ClassInfo.css'
+import type {ClassInfoComponentProps} from '../types'
 
 const ClassInfo = ({
   day,
@@ -12,7 +14,7 @@ const ClassInfo = ({
   follows,
   cap,
   location,
-}) => (
+}: ClassInfoComponentProps) => (
   <div className={`${level} class-${number}`}>
     <div className="number">{number}</div>
     <p>
@@ -26,18 +28,5 @@ const ClassInfo = ({
     </p>
   </div>
 )
-
-ClassInfo.propTypes = {
-  day: React.PropTypes.string.isRequired,
-  level: React.PropTypes.string.isRequired,
-  team: React.PropTypes.string.isRequired,
-  time: React.PropTypes.string.isRequired,
-  number: React.PropTypes.string.isRequired,
-  cost: React.PropTypes.number.isRequired,
-  leads: React.PropTypes.number.isRequired,
-  follows: React.PropTypes.number.isRequired,
-  cap: React.PropTypes.number.isRequired,
-  location: React.PropTypes.string.isRequired,
-}
 
 export default ClassInfo

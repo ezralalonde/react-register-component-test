@@ -1,6 +1,8 @@
+// @flow
 import React from 'react'
+import type {SortOptionComponentProps} from '../types'
 
-const SortOption = ({name, group, setSort}) => (
+const SortOption = ({name, group, setSort}: SortOptionComponentProps) => (
   <div>
     <label>
       <input type="radio" name={group} value={name} onChange={setSort} />
@@ -8,11 +10,5 @@ const SortOption = ({name, group, setSort}) => (
     </label>
   </div>
 )
-
-SortOption.propTypes = {
-  group: React.PropTypes.string.isRequired,
-  name: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-  setSort: React.PropTypes.func.isRequired,
-}
 
 export default SortOption

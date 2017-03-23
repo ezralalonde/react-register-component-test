@@ -1,6 +1,8 @@
+// @flow
 import React from 'react'
+import type {FilterOptionComponentProps} from '../types'
 
-const FilterOption = ({index, group, value, setStatus, checked}) => (
+const FilterOption = ({index, group, value, setStatus, checked=false}: FilterOptionComponentProps) => (
   <div>
     <label>
       <input type="checkbox" name={group} value={value}
@@ -11,17 +13,5 @@ const FilterOption = ({index, group, value, setStatus, checked}) => (
     </label>
   </div>
 )
-
-FilterOption.defaultProps = {
-  checked: false,
-}
-
-FilterOption.propTypes = {
-  checked: React.PropTypes.bool.isRequired,
-  index: React.PropTypes.string.isRequired,
-  group: React.PropTypes.string.isRequired,
-  setStatus: React.PropTypes.func.isRequired,
-  value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired,
-}
 
 export default FilterOption

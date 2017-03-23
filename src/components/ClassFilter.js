@@ -1,7 +1,9 @@
+// @flow
 import React from 'react'
 import FilterGroup from './FilterGroup'
+import type {ClassFilterComponentProps, ClassInfoType} from '../types'
 
-const getOptions = (key, classes) => {
+const getOptions = (key: string, classes: Array<ClassInfoType>) => {
   let options = []
   classes.map((xx) => {
     !!xx[key] && !options.includes(xx[key]) && options.push(xx[key])
@@ -9,7 +11,7 @@ const getOptions = (key, classes) => {
   return options
 }
 
-const ClassFilter = ({classes, filters, setStatus, checkedBoxes}) => (
+const ClassFilter = ({classes, filters, setStatus, checkedBoxes}: ClassFilterComponentProps) => (
   <div>
     {
       filters.map((xx) => <FilterGroup
@@ -23,12 +25,5 @@ const ClassFilter = ({classes, filters, setStatus, checkedBoxes}) => (
     }
   </div>
 )
-
-ClassFilter.propTypes = {
-  checkedBoxes: React.PropTypes.object.isRequired,
-  classes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  filters: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  setStatus: React.PropTypes.func,
-}
 
 export default ClassFilter

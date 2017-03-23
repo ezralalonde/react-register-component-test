@@ -1,4 +1,9 @@
-var single = {
+// @flow
+import type {
+  ClassInfoType, FilterOptions, SortOptions, Orders
+} from '../types'
+
+const single: ClassInfoType = {
   "day": "Tuesday",
   "level": "Beginner",
   "team": "Test Team",
@@ -11,7 +16,7 @@ var single = {
   "location": "Test Location",
 }
 
-var multi = [
+const multi: Array<ClassInfoType> = [
   {
     "day": "Sunday",
     "level": "Beginner",
@@ -86,7 +91,57 @@ var multi = [
   }
 ]
 
+const filters: Array<FilterOptions> = [
+  {key: "level", name:"Level"},
+  {key: "day", name:"Day"},
+  {key: "location", name:"Location"},
+  {key: "cost", name:"Price"},
+]
+
+const orders: Array<Orders> = [
+  {itemKey: 'itemKey-1', ...multi[0], role: 'lead'},
+  {itemKey: 'itemKey-2', ...multi[0], role: 'follow'},
+  {itemKey: 'itemKey-3', ...multi[1], role: 'follow'},
+  {itemKey: 'itemKey-4', ...multi[1], role: 'follow'},
+]
+
+const sortByNumber = (getValue: (aa: ClassInfoType) => number) => {
+  return (xx: ClassInfoType, yy: ClassInfoType) => Number(getValue(xx)) - Number(getValue(yy))
+}
+
+const sortByList = (getValue, list) => {
+  return (xx: ClassInfoType, yy: ClassInfoType) => list.indexOf(getValue(xx)) - list.indexOf(getValue(yy))
+}
+
+const sortByDay = sortByList(xx => xx.day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'])
+
+const levelList = [
+  'Beginner', 'Beginner Plus', 'Beginner Half-Class',
+  'Intermediate', 'Intermediate Plus',
+  'Advanced'
+]
+const sortByLevel = sortByList(xx => xx.level, levelList)
+
+const sortByString = (getValue: (aa: ClassInfoType) => string) => {
+  return (xx: ClassInfoType, yy: ClassInfoType) => getValue(xx).localeCompare(getValue(yy))
+}
+
+const sorts: Array<SortOptions> = [
+  {key: "number", name:"Number", method: sortByNumber(xx => Number(xx.number))},
+  {key: "level", name:"Level", method: sortByLevel},
+  {key: "day", name:"Day", method: sortByDay},
+  {key: "location", name:"Location", method: sortByString(xx => xx.location)},
+  {key: "cost", name:"Price", method: sortByNumber(xx => xx.cost)},
+]
+
 export {
   single,
   multi,
+  filters,
+  orders,
+  sorts,
+  sortByDay,
+  sortByLevel,
+  sortByNumber,
+  sortByString,
 }
